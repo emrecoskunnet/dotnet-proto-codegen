@@ -25,7 +25,7 @@ _Build CodeGen_
 ```dotnet build ```
 
 _Move Exec Path_
-```cd bin/Debug/net7.0 ```
+```cd protoc-gen-dotnet/bin/Debug/net7.0 ```
 
 _Execute All Generators_
 
@@ -52,7 +52,7 @@ protoc --proto_path=/sample/  --plugin=proto-gen-dotnet --dotnet_out=/sample/Api
 - protoc works with full relative path. You must input full path like this:
 
 ```
-protoc --proto_path=/Users/emrecoskun/Projects/dotnet-proto-codegen/sample/  --plugin=/Users/emrecoskun/Projects/dotnet-proto-codegen/protoc-gen-dotnet/bin/Debug/net7.0/proto-gen-dotnet --dotnet_out=/Users/emrecoskun/Projects/dotnet-proto-codegen/sample/CodeGenerationOutput/  /Users/emrecoskun/Projects/dotnet-proto-codegen/sample/hello.proto
+protoc --proto_path=/Users/emrecoskun/Projects/dotnet-proto-codegen/samples/  --plugin=./protoc-gen-dotnet --dotnet_out=/Users/emrecoskun/Projects/dotnet-proto-codegen/samples/CodeGenerationOutput/ --dotnet_opt=core-namespace=Foo.Core  /Users/emrecoskun/Projects/dotnet-proto-codegen/samples/hello.proto
 ```
 
 - These code generators are for example purposes only. Don't use it directly in your projects. They were written to give you an idea of how you can make a code generator suitable for your own project.
