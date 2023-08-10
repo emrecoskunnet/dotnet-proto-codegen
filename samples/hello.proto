@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+option csharp_namespace = "Foo.Core.Api.Grpc";
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+service HelloService {
+  rpc SayHello (HelloRequest) returns (HelloResponse);
+
+  rpc GetList (ListQuery) returns (ObjectList);
+
+  rpc GetLookup (google.protobuf.Empty) returns (ObjectLookupList);
+
+  rpc GetById (GetByIdRequest) returns (Entry);
+
+  rpc Create (CreateRequest) returns (Entry);
+
+  rpc Update (UpdateRequest) returns (Entry);
+
+  rpc Delete (GetByIdRequest) returns (google.protobuf.Empty);
+}
+
+message HelloRequest {
+  string greeting = 1;
+}
+
+message HelloResponse {
+  string reply = 1;
+}
+
+message ListQuery {
+  int32 pageNumber = 1;
+  int32 pageSize = 2;
+  string orderBy = 3;
+  string sortBy = 4;  // 'Asc' 'Desc' ''
+}
+
+message ObjectList {
+  message ObjectListItem {
+    int32 id = 1;
+    string name = 2;
+    google.protobuf.Timestamp created = 3;
+  }
+  int32 total = 1;
+  repeated ObjectListItem items = 2;
+}
+
+message ObjectLookupList {
+  message ObjectLookupListItem {
+    int32 id = 1;
+    string name = 2;
+  }
+  int32 total = 1;
+  repeated ObjectLookupListItem items = 2;
+}
+
+
+message GetByIdRequest{
+  int32 id = 1;
+}
+
+message Entry {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  google.protobuf.StringValue createdUser = 4;
+  google.protobuf.Timestamp created = 5;
+}
+
+message CreateRequest {
+  string name = 1;
+  string description = 2;
+}
+
+message UpdateRequest {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+}

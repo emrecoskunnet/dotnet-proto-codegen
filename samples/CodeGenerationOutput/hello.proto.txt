@@ -1,0 +1,45 @@
+service HelloService
+	HelloResponse SayHello(HelloRequest)
+	ObjectList GetList(ListQuery)
+	ObjectLookupList GetLookup(Empty)
+	Entry GetById(GetByIdRequest)
+	Entry Create(CreateRequest)
+	Entry Update(UpdateRequest)
+	Empty Delete(GetByIdRequest)
+message HelloRequest
+	String greeting
+message HelloResponse
+	String reply
+message ListQuery
+	Int32 pageNumber
+	Int32 pageSize
+	String orderBy
+	String sortBy
+message ObjectList
+	Int32 total
+	ObjectListItem items
+    message ObjectListItem
+    	Int32 id
+    	String name
+    	Timestamp created
+message ObjectLookupList
+	Int32 total
+	ObjectLookupListItem items
+    message ObjectLookupListItem
+    	Int32 id
+    	String name
+message GetByIdRequest
+	Int32 id
+message Entry
+	Int32 id
+	String name
+	String description
+	StringValue createdUser
+	Timestamp created
+message CreateRequest
+	String name
+	String description
+message UpdateRequest
+	Int32 id
+	String name
+	String description
